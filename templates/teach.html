@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{%extends 'base.html'%}
+{%block content%}
+ <script src="jquery-2.1.4.js"></script>
+<style media="screen">
+button {
+  background-color: red;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+select{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+
+
+}
+
+
+
+
+
+
+
+</style>
+<div class="w3-container w3-card w3-white w3-margin-bottom">
+  <h2>4 of 4 page</h2>
+</div>
+
+<div class="w3-container w3-card w3-white w3-margin-bottom">
+<h2>Add Teaching:</h2>
+
+
+</div>
+
+
+<div class="w3-container w3-card w3-white w3-margin-bottom">
+
+<form class="" action="/teach" method="post">{%csrf_token%}
+
+
+
+
+  {%for i in course%}
+  <table class="w3-table-all w3-hoverable">
+    <thead>
+      <tr class="w3-light-grey">
+      <th>Course</th>
+      {%for j in i.subjects%}
+        <th>{{j}}</th>
+      {%endfor%}
+    </tr>
+    </thead>
+    <tr>
+      <td>{{i.name}}({{i.year}})</td>
+      {%for j in i.subjects%}
+       <td>
+         <select class="" name="{{i.id}}/{{j}}">
+           <option value="">select</option>
+           {%for k in f%}
+           <option value="{{k.id}}">{{k.name}}</option>
+           {%endfor%}
+         </select>
+       </td>
+       {%endfor%}
+
+    </tr>
+</table>
+<br>
+{%endfor%}
+<div class="w3-container w3-card w3-white w3-margin-bottom">
+  <button type='submit'>Submit</button>
+</div>
+</form>
+
+
+
+</div>
+
+
+{%endblock%}

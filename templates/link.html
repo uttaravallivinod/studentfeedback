@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{%extends 'base.html'%}
+{%block content%}
+<style media="screen">
+button {
+background-color:darkcyan;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+width: auto;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: grey;
+margin-top:50px;
+}
+
+* {
+  box-sizing: border-box;
+}
+.container {
+  border-radius: 5px;
+  color:black;
+  padding: 20px;
+  width:60%;
+  margin-right:auto;
+  margin-left:auto;
+ margin-top: 80px;
+  background-color: white;
+}
+
+</style>
+<div class="container">
+
+
+<h1>Send mail to all students</h1>
+<ul>
+  <li>Please Make Sure All Courses are added or not ,If not add first <a href="/profile">Course Page</a></li>
+  <li>Please Make Sure All Facultys are added or not ,If not add first <a href="/faculty">Faculty Page</a></li>
+  <li>Please Make Sure All Students are added or not ,If not add first <a href="/student">Student Page</a></li>
+</ul>
+<a href="/sms"><button type="button" name="button">Go Head</button></a>
+
+{%for i in messages%}{{i}}{%endfor%}
+</div>
+{%endblock%}

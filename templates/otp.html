@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{%extends 'slogin.html'%}
+{%block b%}
+
+<div id="wrapper">
+
+<div class="form_div">
+<p class="form_label">FeedBack</p><hr>
+<form method="post"name='fm'">{%csrf_token%}
+<p><input type="text" placeholder="Enter OTP" name='otp'></p>
+<p><input type="submit" value="Submit"></p>
+</form>
+</div>
+
+</div>
+<div>
+  {%for i in messages%}
+   {{i}}
+   {%endfor%}
+
+
+{%endblock%}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{%extends 'base.html'%}
+{%block content%}
+<style media="screen">
+button {
+  background-color: red;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+select{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+
+
+}
+</style>
+<div class="w3-container w3-card w3-white w3-margin-bottom">
+  <h2>Update Teaching:</h2>
+</div>
+
+<div class="w3-container w3-card w3-white w3-margin-bottom">
+<h2>Add Teaching:</h2>
+
+
+</div>
+
+
+<div class="w3-container w3-card w3-white w3-margin-bottom">
+
+<form class="" method="post">{%csrf_token%}
+
+
+
+
+  {%for i in tt%}
+  <table class="w3-table-all w3-hoverable">
+    <thead>
+      <tr class="w3-light-grey">
+      <th>Course</th>
+
+      <th>{{i.subject}}</th>
+
+    </tr>
+    </thead>
+    <tr>
+      <td>{{i.course_n.name}}({{i.course_n.year}})</td>
+
+       <td>
+         <select class="" name="{{i.id}}">
+           <option value="">select</option>
+           {%for k in f%}
+           <option value="{{k.id}}">{{k.name}}</option>
+           {%endfor%}
+         </select>
+       </td>
+
+
+    </tr>
+</table>
+<br>
+{%endfor%}
+<div class="w3-container w3-card w3-white w3-margin-bottom">
+  <button type='submit'>Submit</button>
+</div>
+</form>
+
+
+
+</div>
+
+{%endblock%}

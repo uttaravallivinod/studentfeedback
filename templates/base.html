@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+{%block title%}<title>{{request.user.college.name}}|FeedBack</title>{%endblock%}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body{margin-top:50px}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: grey;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  background-color: cyan;
+  float: none;
+  color: black;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-cyan w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-grey w3-large w3-cyan" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="/" class="w3-bar-item w3-button w3-padding-large w3-cyan">Home </a>
+    {%if user.is_authenticated%}
+    <a href="/dashboard"  class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-grey">Dashboard</a>
+
+    <div class="dropdown">
+     <button class="dropbtn">Actions
+       <i class="fa fa-caret-down"></i>
+     </button>
+     <div class="dropdown-content">
+
+       <a href="/profile">Course</a>
+       <a href="/faculty">Faculty</a>
+    <a href="/student">Student</a>
+    <a href="/pp">Profile</a>
+
+     </div>
+    </div>
+    <a href="/alert" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-grey">Inform Students</a>
+
+    <!--
+    <a href="/faculty"  class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Facultys</a>
+    <a href="#"  class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Generate Link</a>
+  --><a href="/accounts/logout" style='float:right' class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-grey">Logout</a>
+
+  {%else%}
+    <a href="/register" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-grey">Register</a>
+
+    {%endif%}
+    <a href="#" style='float:right'  class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-grey">About us</a>
+
+
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-cyan w3-hide w3-hide-large w3-hide-medium w3-large">
+    {%if user.is_authenticated%}
+    <a href="/dashboard" class="w3-bar-item w3-button w3-padding-large">Dashboard</a>
+<a href="/alert" class="w3-bar-item w3-button w3-padding-large">Inform Students</a>
+    <!--
+    <a href="/faculty" class="w3-bar-item w3-button w3-padding-large">Facultys</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Genarate Link</a>
+    --><a href="/accounts/logout" class="w3-bar-item w3-button w3-padding-large">Logout</a>
+    {%else%}
+    <a href="/login" class="w3-bar-item w3-button w3-padding-large">Login</a>
+    <a href="/register" class="w3-bar-item w3-button w3-padding-large">Register</a>
+    {%endif%}
+
+  </div>
+</div>
+{% block content %}
+<!-- Header -->
+<header class="w3-container w3-cyan w3-center" style="padding:128px 16px;box-shadow: inset -4px 4px 24px -1px rgba(99,86,99,1);">
+  <h1 class="w3-margin w3-jumbo">STUDENT FEEDBACK</h1>
+
+    {%if user.is_authenticated%}
+    <p class="w3-xlarge">{{user.college.name|upper}}</p>
+    <a href='/profile'><button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Go to Data</button></a>
+    {%else%}
+    <p class="w3-xlarge">Every Detail You Can Visualize Now</p>
+  <a href='/login'><button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Login</button></a>
+  {%endif%}
+</header>
+
+<!--
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Lorem Ipsum</h1>
+      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+    <div class="w3-third w3-center">
+      <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
+    </div>
+  </div>
+</div>
+
+
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-third w3-center">
+      <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
+    </div>
+
+    <div class="w3-twothird">
+      <h1>Lorem Ipsum</h1>
+      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+  </div>
+</div>
+
+<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+    <h1 class="w3-margin w3-xlarge">Quote of the day: live life</h1>
+</div>-->
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-blue">
+  <div class="w3-xlarge w3-padding-32">
+    <a href="https://www.facebook.com/profile.php?id=100007374048701" target="_blank"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+    <a href="https://www.instagram.com/kumar_vinod_so/?hl=en" target="_blank"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+
+
+    <a href="https://twitter.com/Vinodkumar81792" target="_blank"><i class="fa fa-twitter w3-hover-opacity"></i></a>
+    <a href="https://www.linkedin.com/in/uttaravalli-vinod-kumar-13a313150/" target="_blank"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
+ </div>
+
+</footer>
+{%endblock%}
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{%extends 'anal/dashboard.html'%}
+{%block bb%}
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "{{faculty}}"
+	},
+	axisY:{
+		includeZero: false
+	},
+	data: [{
+		type: "line",
+      	indexLabelFontSize: 16,
+		dataPoints: [
+      {%for i in z%}
+			{ y:{{i}}},
+			{%endfor%}
+		]
+	}]
+});
+chart.render();
+
+}
+
+
+
+function myF() {
+
+var chart = new CanvasJS.Chart("charttContainer", {
+	animationEnabled: true,
+
+	title:{
+		text:"{{faculty}}"
+	},
+	axisX:{
+		interval: 1,
+	},
+	axisY2:{
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "Average",
+		maximum:100
+
+	},
+	data: [{
+		type: "bar",
+		name: "Groups and subjects",
+		axisYType: "secondary",
+		color: "#014D65",
+		dataPoints: [{%for i,k in gp.items%}
+			{ y: {{k}}, label: "{{i}}" },
+			{%endfor%}
+
+		]
+	}]
+});
+chart.render();
+
+}
+
+
+
+
+
+</script>
+<div class="w3-panel" >
+  <div class="w3-row-padding" style="margin:0 -16px;">
+
+      <h5><b>{{faculty}} Chart</b></h5>
+      <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+</div>
+</div>
+<hr>
+<div class="w3-panel">
+  <div class="w3-row-padding" style="margin:0 -16px;"><button type="button" name="button" onclick="myF()">Click to see Group wise perfermence</button>
+
+
+      <div id="charttContainer" style="height: 300px; width: 100%;"></div>
+
+
+
+</div>
+</div>
+{%endblock%}

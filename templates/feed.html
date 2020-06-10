@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>feedback</title>
+    <style media="screen">
+      input[type=text], select, textarea{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color:#f5f5f5;}
+thead{
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+tr:hover{
+  background-color: lightgrey
+}
+
+button{
+  border: none; /* Remove borders */
+  color: white; /* Add a text color */
+  padding: 14px 28px; /* Add some padding */
+  cursor: pointer; /* Add a pointer cursor on mouse-over */
+  background-color: #f44336;
+  float:right;
+}
+button:hover{
+  background: #da190b;
+}
+
+    </style>
+  </head>
+  <body><form class="" method="post">{%csrf_token%}
+
+<div>
+
+
+        <table>
+          <thead>
+            <tr >
+              <th>Subject(faculty)</th>
+
+               <th>Class Taking</th>
+               <th>Behavior</th>
+               <th>Syllabus Completion</th>
+               <th>Exams Conducting</th>
+               <th>Teaching</th>
+
+            </tr>
+          </thead>
+          {%for i in tt%}
+           <tr>
+             <td>{{i.subject}}({{i.faculty_n.name}})</td>
+             <td>
+
+             <select class="" name="{{i.subject}}/ct">
+               <option value="10">very good</option>
+               <option value="7">good</option>
+               <option value="3">bad</option>
+               <option value="1">very bad</option>
+
+             </select>
+
+             </td>
+             <td><select class="" name="{{i.subject}}/b">
+               <option value="10">very good</option>
+               <option value="7">good</option>
+               <option value="3">bad</option>
+               <option value="1">very bad</option>
+
+             </select></td>
+             <td><select class="" name="{{i.subject}}/sc">
+               <option value="10">very good</option>
+               <option value="7">good</option>
+               <option value="3">bad</option>
+               <option value="1">very bad</option>
+
+             </select></td>
+             <td><select class="" name="{{i.subject}}/ec">
+               <option value="10">very good</option>
+               <option value="7">good</option>
+               <option value="3">bad</option>
+               <option value="1">very bad</option>
+
+             </select></td>
+             <td><select class="" name="{{i.subject}}/t">
+               <option value="10">very good</option>
+               <option value="7">good</option>
+               <option value="3">bad</option>
+               <option value="1">very bad</option>
+
+             </select></td>
+
+           </tr>
+           {%endfor%}
+
+          <tr>
+            <td>Extra Feedback:</td>
+            <td colspan="5"><input type='text' placeholder='Enter any Extra Feedback' name='ef'/></td>
+          </tr>
+        </table>
+        </div>
+        <br>
+        <button type="submit" name="button">Submit</button>
+        </form>
+  </body>
+</html>
